@@ -1,4 +1,5 @@
 import nmap
+# from pprint import pprint
 
 # Create new scanner object
 scanner = nmap.PortScanner()
@@ -15,6 +16,7 @@ scanner.scan(target, arguments=options)
 print("\n----- Scan Results -----\n")
 
 for host in scanner.all_hosts():
+    # pprint(scanner[host]) -- shows all data -- 
     print(f"Host: {host}")
     print(f"State: {scanner[host].state()}\n")
 
