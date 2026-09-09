@@ -1,0 +1,83 @@
+----- socket -----
+
+What is a socket?
+- A network socket is a software structure within a network node of a computer network that serves as an endpoint for sending
+and receiving data across the network.
+- The structure and properties of a socket are defined by an API for the networking architecture.
+- Sockets are created only during the lifetime of a process of an application running in the node.
+- The term socket is also used for the software endpoint of node-internal inter-process communication (IPC), 
+which often uses the same API as a network socket.
+
+socket module
+- The socket module in Python provides a low-level networking interface that exposes the BSD socket interface,
+allowing programs to create and manage network connections for client-server communication.
+- Supports both connection-oriented (TCP) and connectionless (UDP) protocols, as well as IPv4/6 address families.
+- Common usage includes utilizing context managers (with statements) to ensure sockets are properly closed after use.
+
+Key functionalities
+- Socket creation: Using socket.socket() with address families like AF_INET (IPv4),
+and socket types like SOCK_STREAM (TCP), or SOCK_DGRAM (UDP).
+- Server operations: Methods such as bind(), listen(), and accept() enable a server to wait for and handle
+incoming connections.
+- Client operations: The connect() method establishes a connection to a remote host and port.
+- Data transfer: Data is sent and received using send() and recv() methods, which handle bytes encoding/decoding.
+
+BSD socket interface
+- BSD socket interface is a standard API for Internet domain sockets and Unix domain sockets,
+ used primarily for inter-process communication (IPC) over networks.
+- Provides a common set of function calls that allow applications to establish connections, send/receive data,
+and manage networl protocols like TCP/UDP.
+- Allows developers to write portavle network applications using a consistent model regardless of the
+underlying transport mechanism.
+
+Socket vs Port 
+- Port: logical, numerical identifier that distinguishes specific servers or applications on a single device.
+- Socket: communication endpoint that uniquely identifies a connection by combining an IP address, port number, and
+a transport protocol.
+
+----- ports -----
+
+- Logical numbers managed by the OS
+- Act like mailing addresses to send network data to the correct software program
+- Communication endpoint
+- Used by transport protocols like TCP and UDP
+
+----- scapy -----
+
+What is scapy?
+- Python-based interactive packet manipulation program and library.
+- Enables users to forge, decode, sned, sniff, and dissect network packets across a variety of protocols,
+serving as a versatile tool for network engineering, security research, and cybersecurity.
+- Widely used for tasks ranging from basic network discovery to complex attacks.
+
+Key functionalities
+- Packet crafting: Build custom packets with arbritrary fields and protocol layers using a flexible
+Domain Specific Language (DSL) based on python syntax.
+- Network tasks: Scanning, tracerouting, probing, unit testing, and network discovery. Can replace tools
+like nmap, tcpdump, hping, and Wireshark for many use cases.
+- Interactive Analysis: Returns full decoded packets and matches requests with responses, allowing
+for multiple interpretations of the raw data.
+- Priveleged access: Requires administrative privelages to access network interfaces directly
+for packet injection and capture.
+
+----- nmap -----
+
+What is nmap?
+- nmap (Network Mapper) is a free, open-source tool used for network discovery and security auditing.
+- Industry standard for mapping networks, identifying hosts, and detecting vulnerabilities.
+- Functions by sending specially crafted IP packets to target systems and analysing the responses to determine:
+    - Active hosts and devices on the network
+    - Open ports and the services running on them
+    - Operating systems and software versions via fingerprinting
+    - Firewall and packet filter configurations
+- Widely used by pen testers, system admins, and security professionals for tasks such as:
+    - Port Scanning
+    - Network inventory
+    - Vulnerability assessment
+    - Exploit detection
+
+nmap scripting engine (NSE)
+- Extends nmap's capabilities
+- Allows for complex automation, malware detection, and advanced vulnerability checks
+
+---------------
