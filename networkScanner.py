@@ -6,8 +6,11 @@ scanner = nmap.PortScanner()
 # Define target IP address/hostname
 target = "scanme.nmap.org"
 
-# Run basic scan on target
-scanner.scan(target)
+# Define nmap options
+options = "-sS -sV -O -A -p 1-1000"
+
+# Run basic scan on target with specified options
+scanner.scan(target, arguments=options)
 
 print("\n----- Scan Results -----\n")
 # Print scan results
