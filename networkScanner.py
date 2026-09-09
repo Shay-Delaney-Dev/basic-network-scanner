@@ -1,5 +1,6 @@
 import nmap
 
+# Create new scanner
 scanner = nmap.PortScanner()
 
 # Define target IP address/hostname
