@@ -17,10 +17,18 @@ print("\n----- Scan Results -----\n")
 for host in scanner.all_hosts():
     print("Host: ", host)
     print("State: ", scanner[host].state())
+
     for proto in scanner[host].all_protocols():
         print("Protocol: ", proto)
-        ports = scanner[host][proto].keys()
-        for port in ports:
-            print("Port: ", port, "State: ", scanner[host][proto][port]['state'])
+
+        for port in scanner[host][proto]:
+            info = scanner[host][proto][port]
+            print(
+                f"Port: {port:<6}",
+                f"State: {info.get('state', 'unknown'):<10}",
+                f"Service: {info.get('name', ''):<12}",
+                f"Product: {info.get('product', ''):<20}",
+                f"Version: {info.get('version', '')}"
+            )
 
 print("\n------------------------")
