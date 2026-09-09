@@ -24,24 +24,27 @@ for host in scanner.all_hosts():
         # Table header
         print(
             f"{'PORT':<8}"
-            f"{'STATE':<12}"
+            f"{'STATE':<10}"
+            f"{'REASON':<12}"
             f"{'SERVICE':<15}"
-            f"{'PRODUCT':<25}"
-            f"{'VERSION':<20}"
+            f"{'PRODUCT':<22}"
+            f"{'VERSION':<15}"
+            f"{'EXTRA INFO':<25}"
         )
 
-        print("-" * 80)
+        print("-" * 107)
 
-        # Table rows
         for port in sorted(scanner[host][proto]):
             info = scanner[host][proto][port]
 
             print(
                 f"{port:<8}"
-                f"{info.get('state', 'unknown'):<12}"
+                f"{info.get('state', ''):<10}"
+                f"{info.get('reason', ''):<12}"
                 f"{info.get('name', ''):<15}"
-                f"{info.get('product', ''):<25}"
-                f"{info.get('version', ''):<20}"
+                f"{info.get('product', ''):<22}"
+                f"{info.get('version', ''):<15}"
+                f"{info.get('extrainfo', ''):<25}"
             )
 
         print()
