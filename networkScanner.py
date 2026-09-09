@@ -8,6 +8,7 @@ target = "scanme.nmap.org"
 # Run basic scan on target
 scanner.scan(target)
 
+print("\n----- Scan Results -----\n")
 # Print scan results
 for host in scanner.all_hosts():
     print("Host: ", host)
@@ -17,3 +18,5 @@ for host in scanner.all_hosts():
         ports = scanner[host][proto].keys()
         for port in ports:
             print("Port: ", port, "State: ", scanner[host][proto][port]['state'])
+
+print("\n------------------------")
