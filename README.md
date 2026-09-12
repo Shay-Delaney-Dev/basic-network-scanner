@@ -1,6 +1,27 @@
 # Basic Network Scanner
 
-A basic Python network scanner that uses Nmap to scan a target IP address, hostname, or subnet and print the results in a table.
+A basic network scanner that uses Nmap to scan a target IP address, hostname, or subnet and print structured results to the terminal.
+
+## Quick Start
+
+1. Install the requirements:
+
+```bash
+python3 -m pip install python-nmap
+```
+
+2. Run a scan against a target:
+
+```bash
+python3 networkScanner.py scanme.nmap.org
+```
+
+This command automatically uses:
+- full port scan (`-p-`)
+- SYN scan (`-sS`)
+- service detection (`-sV`)
+- OS detection (`-O`)
+- aggressive scan mode (`-A`)
 
 ## Features
 
@@ -8,12 +29,14 @@ A basic Python network scanner that uses Nmap to scan a target IP address, hostn
 - Detects active hosts
 - Reports port states and service information
 - Attempts service version and operating system detection
-- Displays results in the terminal
+- Displays results in a readable table format
+- Uses a single required target argument
+- Automatically runs the full default Nmap scan profile
 
 ## Requirements
 
 - Python 3
-- Nmap
+- Nmap installed on your system
 - The `python-nmap` Python package
 
 ## Installation
@@ -35,7 +58,7 @@ python3 -m pip install python-nmap
 
 ### Windows
 
-Install Nmap from [the official Nmap download page](https://nmap.org/download.html), then run:
+Install Nmap from the [official Nmap download page](https://nmap.org/download.html), then run:
 
 ```powershell
 py -m pip install python-nmap
@@ -46,18 +69,29 @@ py -m pip install python-nmap
 Run the scanner from the project directory:
 
 ```bash
-python3 networkScanner.py
+python3 networkScanner.py <target>
 ```
 
-The default target is `scanme.nmap.org`. To scan another authorized target, change the `target` value in `main()`:
+### Example
 
-The scan requests service/version detection, operating system detection, additional information, and ports 1-1000. Some Nmap scan options may require administrator privileges.
+```bash
+python3 networkScanner.py scanme.nmap.org
+```
+
+The script always runs an aggressive full-port scan using:
+- `-sS`
+- `-sV`
+- `-O`
+- `-A`
+- `-p-`
+
+This is intentionally more comprehensive than a quick scan, so it may take longer to complete. Scanning all ports and enabling service and OS detection adds extra probing and processing time. Some Nmap options may require administrator privileges.
 
 ## Limitations
 
-- Results are printed to the terminal and are not currently saved to a file.
-- The target is configured in the source code rather than entered at runtime.
-- The scanner does not currently export JSON or CSV reports.
+- Results are printed to the terminal and are not currently saved to a file
+- The script does not currently export JSON, CSV, or XML reports
+- The scanner is designed for learning and authorized testing only
 
 ## Responsible Use
 

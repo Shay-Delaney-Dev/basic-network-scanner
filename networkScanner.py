@@ -1,3 +1,4 @@
+import argparse
 import nmap
 
 def fit(value, width):
@@ -31,7 +32,7 @@ def print_scan(scanner):
                 fit("SERVICE", 15),
                 fit("PRODUCT", 20),
                 fit("VERSION", 20),
-                fit("EXTRA INF0", 30)
+                fit("EXTRA INFO", 30)
             )
             print("-" * 127)
             for port in sorted(scanner[host][proto]):
@@ -50,9 +51,12 @@ def print_scan(scanner):
     print("------------------------")
 
 def main():
-    target = "scanme.nmap.org"
-    # Define scan options
-    options = "-sS -sV -O -A -p 1-1000"
+    parser = argparse.ArgumentParser(description="Network scanner using Nmap.")
+    parser.add_argument("target", help="Target IP, hostname, or subnet to scan")
+    args = parser.parse_args()
+
+    target = args.target
+    options = "-sS -sV -O -A -p-"
     scanner = run_scan(target, options)
     print_scan(scanner)
 
