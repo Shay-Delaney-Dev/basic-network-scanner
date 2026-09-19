@@ -10,18 +10,11 @@ A basic network scanner that uses Nmap to scan a target IP address, hostname, or
 python3 -m pip install python-nmap
 ```
 
-2. Run a scan against a target:
+2. Run a scan against a target
 
 ```bash
-python3 networkScanner.py scanme.nmap.org
+python3 networkScanner.py scanme.nmap.org 
 ```
-
-This command automatically uses:
-- full port scan (`-p-`)
-- SYN scan (`-sS`)
-- service detection (`-sV`)
-- OS detection (`-O`)
-- aggressive scan mode (`-A`)
 
 ## Features
 
@@ -29,9 +22,8 @@ This command automatically uses:
 - Detects active hosts
 - Reports port states and service information
 - Attempts service version and operating system detection
-- Displays results in a readable table format
-- Uses a single required target argument
-- Automatically runs the full default Nmap scan profile
+- Displays scan results in neatly formatted table
+- Exports scan results as csv file
 
 ## Requirements
 
@@ -69,28 +61,16 @@ py -m pip install python-nmap
 Run the scanner from the project directory:
 
 ```bash
-python3 networkScanner.py <target>
+python3 networkScanner.py <target> 
 ```
 
-### Example
-
-```bash
-python3 networkScanner.py scanme.nmap.org
-```
-
-The script always runs an aggressive full-port scan using:
-- `-sS`
-- `-sV`
-- `-O`
-- `-A`
-- `-p-`
-
-This is intentionally more comprehensive than a quick scan, so it may take longer to complete. Scanning all ports and enabling service and OS detection adds extra probing and processing time. Some Nmap options may require administrator privileges.
+It prints the detailed table and writes the complete Nmap result to a file named
+`scan_output_YYYY-MM-DD_HHMMSS.csv` in the scans directory. Extensive scans may
+take longer and some Nmap options may require administrator privileges.
 
 ## Limitations
 
-- Results are printed to the terminal and are not currently saved to a file
-- The script does not currently export JSON, CSV, or XML reports
+- Scan results are exported as CSV; JSON and XML reports are not supported
 - The scanner is designed for learning and authorized testing only
 
 ## Responsible Use
@@ -101,5 +81,7 @@ Only scan systems and networks that you own or have explicit permission to test.
 
 I made this basic network scanner using free online resources to develop my interest in computer networking and cybersecurity.
 
-I used this article as one source while developing the project:
+I used these articles while developing the project:
 https://medium.com/@amaltomparakkaden/automating-network-scanning-with-python-and-nmap-948948f0b161
+https://labex.io/tutorials/nmap-how-to-export-nmap-scan-output-419145
+https://pypi.org/project/python-nmap/

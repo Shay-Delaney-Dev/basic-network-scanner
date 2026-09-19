@@ -1,5 +1,7 @@
 import argparse
 import nmap
+from datetime import datetime
+from pathlib import Path
 
 def fit(value, width):
     """Helper method to fit a value into a fixed-width column. Prevents confusing overlapping of information spilling into other columns."""
@@ -10,10 +12,10 @@ def fit(value, width):
 
     return value.ljust(width)
 
-def run_scan(target, options):
-    """Runs nmap scan on target IP address/hostname using specified options."""
+def run_scan(target):
+    """Runs nmap scan on target IP address/hostname."""
     scanner = nmap.PortScanner()
-    scanner.scan(target, arguments=options)
+    scanner.scan(target)
     return scanner
 
 def print_scan(scanner):
@@ -50,14 +52,30 @@ def print_scan(scanner):
 
     print("------------------------")
 
-def main():
+def to_file(scanner):
+    """Saves scans to csv files in scans directory."""
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    folderPath = Path("scans")
+    filename = f"scan_output_{timestamp}.csv"
+
+    folderPath.mkdir(parents=True, exist_ok=True)
+
+    filePath = folderPath / filename
+    with open(filePath, 'w') as f:
+        f.write(scanner.csv())
+
+def get_target():
+    """Get and return target input from user."""
     parser = argparse.ArgumentParser(description="Network scanner using Nmap.")
     parser.add_argument("target", help="Target IP, hostname, or subnet to scan")
     args = parser.parse_args()
+    return args.target
 
-    target = args.target
-    options = "-sS -sV -O -A -p-"
-    scanner = run_scan(target, options)
+def main():
+    target = get_target()
+    scanner = run_scan(target)
+    to_file(scanner)
     print_scan(scanner)
 
 if __name__ == "__main__":
