@@ -2,7 +2,6 @@ import argparse
 import nmap
 from datetime import datetime
 from pathlib import Path
-import pandas as pd
 
 def fit(value, width):
     """Helper method to fit a value into a fixed-width column. Prevents confusing overlapping of information spilling into other columns."""
