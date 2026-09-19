@@ -50,7 +50,7 @@ def print_scan(scanner):
                 )
             print()
 
-    print("------------------------")
+    print("------------------------\n")
 
 def to_file(scanner):
     """Saves scans to csv files in scans directory."""
